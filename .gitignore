@@ -14,3 +14,10 @@ db.sqlite3
 # IDE
 *.swp
 
+# Logs
+logs/
+*.log
+
+# Dependency
+node_modules/
+
