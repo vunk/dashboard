@@ -1,0 +1,16 @@
+# Byte-compiled
+__pycache__/
+*.py[cod]
+
+# Distribution
+build/
+
+# Django stuff
+db.sqlite3
+
+# Environment
+.venv/
+
+# IDE
+*.swp
+
