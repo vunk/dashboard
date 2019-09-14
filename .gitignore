@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 
 # Distribution
-build/
+# build/
 
 # Django stuff
 db.sqlite3
