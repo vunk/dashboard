@@ -18,4 +18,14 @@ def index(request):
     }
     return render(request, 'home/abc.html', data)
 
-# Create your views here.
+
+def home(request):
+    gapminder = px.data.gapminder().query("country=='Canada'")
+
+    fig = px.line(gapminder, x="year", y="lifeExp", title='Life exp ectancy in Canada')
+    plot_div = plot(fig, output_type='div', include_plotlyjs=False)
+
+    data = {
+        'joy': plot_div,
+    }
+    return render(request, 'home/home.html', data)
