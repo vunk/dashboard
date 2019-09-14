@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <!-- <link rel="icon" href="/static/images/favicon.ico" type="image/ico" /> -->
+
+    <title>NSS Portal | {% block web.title %}Home{% endblock web.title %}</title>
+
+    <!-- Bootstrap -->
+    <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/static/build/css/custom.css" rel="stylesheet">
+
+    {% block stylesheets %} {% endblock stylesheets %}
+
+</head>
+<body class="nav-md">
+
+  <!-- HTML Template License information -->
+  <!-- Gentelella is licensed under The MIT License (MIT). Which means that you can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. But you always need to state that Colorlib is the original author of this template -->
+
+  <!-- Project is developed and maintained by Colorlib and Aigars Silkalns -->
+  <!-- Github: https://github.com/ColorlibHQ/gentelella -->
+
+    <!-- Vue.JS -->
+    <!-- script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script -->
+    <script src="/static/vendors/vue/dist/vue.js"></script>
+    <!-- jQuery -->
+    <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+    <div class="container body">
+        <div class="main_container">
+
+            {% include "parts/sidebar.html" %}
+
+            {% include "parts/top_navigation.html" %}
+
+            {% block page %} {% endblock page %}
+
+            <footer>
+                <div class="pull-right">©2019 Lionic NSS</div>
+                <div class="clearfix"></div>
+            </footer>
+
+        </div>
+    </div>
+
+    {% block templates %}
+
+    <!-- Notification Modal -->
+    <template id="modal-template">
+        <div class="modal" tabindex="-1" role="dialog" v-bind:id="id">
+        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <slot name="header"><h5 id="header-modal">Notification</h5></slot>
+            </div>
+
+            <div class="modal-body">
+                <slot name="body">
+                    <p>Response:</p>
+                    <pre id="response-modal"></pre>
+                </slot>
+            </div>
+
+            <div class="modal-footer">
+                <slot name="footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </slot>
+            </div>
+
+        </div>
+        </div>
+        </div>
+    </template>
+    <!-- Notification Modal -->
+
+    {% endblock templates %}
+
+    <!-- Custom Theme Scripts -->
+    <script src="/static/build/js/custom.js"></script>
+    <script src="/static/build/js/string_format.js"></script>
+    <script src="/static/build/js/system.js"></script>
+
+    <script>
+        // register modal component
+        Vue.component('modal', {
+            props: ['id'],
+          template: '#modal-template'
+        });
+    </script>
+
+    {% block javascripts %} {% endblock javascripts %}
+
+</body>
+</html>
