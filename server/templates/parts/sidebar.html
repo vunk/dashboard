@@ -1,0 +1,129 @@
+<div class="col-md-3 left_col">
+<div class="left_col scroll-view">
+
+    <div class="navbar nav_title" style="border: 0;">
+        <a href="" class="site_title"><i class="fa fa-lemon-o"></i> <span>Example</span></a>
+    </div>
+    <div class="clearfix"></div>
+
+    <!-- menu profile quick info -->
+    <div class="profile clearfix">
+        <div class="profile_pic">
+            <img src="/static/images/users/{{ user.username|default:'anonymous' }}.png"
+                alt="..." class="img-circle profile_img">
+        </div>
+        <div class="profile_info">
+            <span>Welcome,</span>
+            <h2> {{ user.username|title }} </h2>
+        </div>
+    </div>
+    <br />
+    <!-- /menu profile quick info -->
+
+    <!-- sidebar menu -->
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+        <div class="menu_section">
+            <h3>PROJECT</h3>
+            <ul class="nav side-menu" id="project">
+                <sidebar-menu name="example" icon="fa fa-envelope-o">
+                  <li v-for="item in project.exampleItems"><a v-bind:href="item.href">[[ item.text ]]</a></li>
+                </sidebar-menu>
+            </ul>
+        </div>
+
+        <div class="menu_section">
+            <h3>GENERAL</h3>
+            <ul class="nav side-menu" id="general">
+                <sidebar-menu name="example" icon="fa fa-envelope-o">
+                    <li v-for="item in general.exampleItems"><a v-bind:href="item.href">[[ item.text ]]</a></li>
+                </sidebar-menu>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="sidebar-footer hidden-small" id="sidebar-footer">
+        <template v-for="item in sidebarFooterItems">
+            <a data-toggle="tooltip" data-placement="top" v-bind:title="item.text" v-bind:href="item.href">
+                <span v-bind:class="[[item.cls]]" aria-hidden="true"></span>
+            </a>
+        </template>
+    </div>
+
+</div>
+</div>
+
+<template id="tp-sidebar-menu">
+    <li>
+        <a><i v-bind:class="[[icon]]"></i> [[ name ]] <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+            <slot></slot>
+        </ul>
+    </li>
+</template>
+
+<template id="tp-sidebar-submenu">
+    <li class="sub_menu">
+        <a>[[ name ]]<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+            <li class="sub_menu" v-for="item in items">
+                <a v-bind:href="item.href">[[ item.text ]]</a>
+            </li>
+        </ul>
+    </li>
+</template>
+
+<script>
+    Vue.component('sidebar-menu', {
+        delimiters: ["[[", "]]"],
+        props: ['icon', 'name'],
+        template: '#tp-sidebar-menu'
+    });
+
+    Vue.component('sidebar-submenu', {
+        delimiters: ["[[", "]]"],
+        props: ['name', 'items'],
+        template: '#tp-sidebar-submenu'
+    });
+
+    var general = new Vue({
+        delimiters: ['[[', ']]'],
+        el: "#general",
+        data: {
+            general: {
+                exampleItems: [
+                    {href: '#', text: 'item1'},
+                    {href: '#', text: 'item2'},
+                ],
+            },
+        }
+    });
+
+    var project = new Vue({
+        delimiters: ["[[", "]]"],
+        el: "#project",
+        data: {
+            general: {
+                exampleItems: [
+                    {href: '#', text: 'item1'},
+                    {href: '#', text: 'item2'},
+                ],
+            },
+        }
+    })
+
+    var sidebarFooterItem = new Vue({
+        delimiters: ["[[", "]]"],
+        el: "#sidebar-footer",
+        data: {
+            sidebarFooterItems: [
+                {id: 0, cls: "glyphicon glyphicon-cog", text: 'Settings', href:"javascript:void(0);"},
+                {id: 1, cls: "glyphicon glyphicon-fullscreen", text: 'FullScreen', href:"javascript:void(0);"},
+                {id: 2, cls: "glyphicon glyphicon-eye-close", text: 'Lock', href:"javascript:void(0);"},
+                {id: 3, cls: "glyphicon glyphicon-off", text: 'Logout', href:"/auth/logout/"},
+            ]
+        }
+    });
+
+</script>
