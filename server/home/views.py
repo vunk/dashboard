@@ -16,6 +16,7 @@ def index(request):
         'tt': '123',
         'joy': plot_div,
     }
-    return render(request, 'home/abc.html', data)
+    #return render(request, 'home/abc.html', data)
+    return render(request, '../../templates/base.html', data)
 
 # Create your views here.
