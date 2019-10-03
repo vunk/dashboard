@@ -17,6 +17,6 @@ def index(request):
         'joy': plot_div,
     }
     #return render(request, 'home/abc.html', data)
-    return render(request, '../../templates/base.html', data)
+    return render(request, 'base.html', data)
 
 # Create your views here.
