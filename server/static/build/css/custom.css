@@ -491,7 +491,7 @@ body .container.body .right_col {
     background: #D9DEE4
 }
 body {
-    color: #73879C;
+    color: #AAAAAA;
     background: #2A3F54;
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
     font-size: 13px;
@@ -516,7 +516,10 @@ body {
     display: block
 }
 .page-title .title_left h3 {
-    margin: 9px 0
+    margin: 9px 0;
+    font-family: "Microsoft JhengHei";
+    font-weight:bold;
+    color: #666666;
 }
 .page-title .title_right {
     width: 55%;
