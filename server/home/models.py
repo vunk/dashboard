@@ -4,7 +4,10 @@ from django.db import models
 class Users(models.Model):
     name = models.TextField()
     age = models.TextField()
-    Dep = models.TextField()
-    
+    Dep = models.TextField()    
+  
     class Meta:
-      db_table = 'Users'
+        db_table='Users'
+  
+    #def publish(self):
+    #    self.save()
